@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.ArrayList;
 import com.unu.blog.beans.post;
 
-public class postmodel {
+public class modelodeposts {
 	
-	public List<post> listarpost(){
+	public List<post> obtenerlistadeposts(){
 		ArrayList<post> listadeposts = new ArrayList<>();
 		listadeposts.add(new post("Hoy estoy cansado...","Hoy estoy cansado, la verdad, estoy contento de "
 				+ "haber llegado a casa otro dia mas, ire a dormir y para mañana lo que sigue."));
