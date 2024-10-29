@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class ConexionBDD {
 	
-	private String url = "jdbc:mysql://localhost:3306/blogsdatabase";
+	private String url = "jdbc:mysql://localhost:3306/blogdb";
 	private String usuario = "root";
 	private String password = "123456";
 	protected Connection ConexionBDD;

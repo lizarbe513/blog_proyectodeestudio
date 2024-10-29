@@ -1,17 +1,32 @@
 package com.unu.blog.models;
 
 import java.util.List;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import com.unu.blog.beans.post;
 
-public class modelodeposts {
+public class modelodeposts extends ConexionBDD {
+	CallableStatement ejecutarconsulta;
+	ResultSet contenidobd;
 	
 	public List<post> obtenerlistadeposts(){
-		ArrayList<post> listadeposts = new ArrayList<>();
-		listadeposts.add(new post("Hoy estoy cansado...","Hoy estoy cansado, la verdad, estoy contento de "
-				+ "haber llegado a casa otro dia mas, ire a dormir y para mañana lo que sigue."));
-		listadeposts.add(new post("Hoy fue un dia espectacular!","Hoy fue un dia increible!, la verdad estoy"
-				+ " muy contento hoy, ojala mañana fuera igual, en fin, hora de dormir."));
-		return listadeposts;
+		try {
+			List<post> listaretornar = new ArrayList<>();
+			this.abrirconexionBDD();
+			ejecutarconsulta = ConexionBDD.prepareCall("select * from post");
+			contenidobd = ejecutarconsulta.executeQuery();
+			while (contenidobd.next()) {
+				post posti = new post();
+				posti.setName(contenidobd.getString("postname"));
+				posti.setPostcontenido(contenidobd.getString("postcont"));
+				posti.setId(contenidobd.getInt("idpost"));
+				listaretornar.add(posti);
+			}
+			this.cerrarconexionBDD();
+			return listaretornar;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }

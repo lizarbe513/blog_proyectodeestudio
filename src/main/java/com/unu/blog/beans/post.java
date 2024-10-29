@@ -3,10 +3,25 @@ package com.unu.blog.beans;
 public class post {
 	private String name;
 	private String postcontenido;
+	private int id;
 	
 	public post() {
 	}
 	
+	
+	
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
 	public post(String name, String postcontenido) {
 		this.name = name;
 		this.postcontenido = postcontenido;
