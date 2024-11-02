@@ -29,4 +29,27 @@ public class modelodeposts extends ConexionBDD {
 			return null;
 		}
 	}
+	
+	public void nuevopost(post newpost) {
+		try {
+			this.abrirconexionBDD();
+			ejecutarconsulta = ConexionBDD.prepareCall("insert into post(postname, postcont) values ('"+newpost.getName()+"', '"+newpost.getPostcontenido()+"')");
+			ejecutarconsulta.execute();
+			this.cerrarconexionBDD();
+		} catch (Exception e) {
+			e.getMessage();
+		}
+	}
+	
+	public void eliminarpost(int ideliminar) {
+		try {
+			this.abrirconexionBDD();
+			ejecutarconsulta = ConexionBDD.prepareCall("call sp_eliminarpost(?)");
+			ejecutarconsulta.setInt(1, ideliminar);
+			ejecutarconsulta.execute();
+			this.cerrarconexionBDD();
+		} catch (Exception e) {
+			e.getMessage();
+		}
+	}
 }

@@ -10,24 +10,31 @@
 <title>blog punto com</title>
 </head>
 <body>
-	<h1>BLOG PUNTO COM</h1>
-	<%
-	List<post> listaconlospost = (List<post>) request.getAttribute("lista");
-	%>
-	<h3>Posts recientes:</h3>
-	<%
-	if (listaconlospost != null) {
-		for (post posti : listaconlospost) {
-	%>
-	<h3><%=posti.getName() %></h3>
-	<p><%=posti.getPostcontenido() %></p>
-	<%
-	}
-	} else {
-	%>
-	<h4>No hay nada</h4>
-	<%
-	}
-	%>
+	<div>
+		<h1>BLOG PUNTO COM</h1>
+		<%
+		List<post> listaconlospost = (List<post>) request.getAttribute("lista");
+		%>
+		<h3>Posts recientes:</h3>
+		<%
+		if (listaconlospost != null) {
+			for (post posti : listaconlospost) {
+		%>
+		
+		<h3>(<%=posti.getId()%>)<%=posti.getName()%></h3>
+		<p><%=posti.getPostcontenido()%></p>
+		<%
+		}
+		} else {
+		%>
+		<h4>No hay nada</h4>
+		<%
+		}
+		%>
+	</div>
+	<div>
+	<a href="posts/nuevopost.jsp" class="boton">Agregar nuevo post</a>
+	<a href="posts/eliminarpost.jsp" class="boton">Eliminar post</a>
+	</div>
 </body>
 </html>
